@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
+
                 <div class="card">
                     <div class="card-header">{{ __('currrent_user') }}</div>
 
@@ -18,39 +19,39 @@
 
                     </div>
                 </div>
+                <br>
 
+                <form action="{{ url('/change') }}" method="POST">
+                    @csrf
+                    <div class="row">
+                        @foreach ($roles as $role)
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h1>{{ $role->name }}</h1>
+                                    </div>
 
-            <form action="{{url('/change')}}" method="POST">
-                @csrf
-                <div class="row">
-                    @foreach ($roles as $role)
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h1>{{ $role->name }}</h1>
-                                </div>
-
-                                <div class="card-body">
-                                    <input type="text" name="{{ $role->name }}" value="{{ $role->id }} " hidden>
-
-                                    @foreach ($permissions as $p)
-                                        <div class="row">
-                                            <input type="checkbox"  name="{{ $role->name }}[]" value="{{ $p->name }}" />
-                                            <p>{{ $p->name }}</p>
-                                        </div>
-                                    @endforeach
+                                    <div class="card-body">
+                                        {{-- <input type="text" name="{{ $role->name }}" value="{{ $role->id }}" hidden/> --}}
+                                        @foreach ($permissions as $p)
+                                            <div class="row">
+                                                <input type="checkbox" name="{{ $role->id }}[{{$p->id}}]" value="{{$p->name}}" />
+                                                <p>{{ $p->name }}</p>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
+                        @endforeach
+                    </div>
 
-                <div class="row justify-content-md-center">
-                <button class=""type="submit"> save </button>
+                    <div class="">
+                        <button class="" type="submit" style="margin: 15px; "> save </button>
+                    </div>
 
-                </div>
-            </form>
+                </form>
 
             </div>
         </div>
+    </div>
     @endsection
