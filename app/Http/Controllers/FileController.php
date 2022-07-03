@@ -27,6 +27,7 @@ class FileController extends Controller
         //   dd(auth()->id());
         //   dd($fileName , $type , $size);
           $request->file->move(public_path('file'), $fileName);
+          
           File::create([
             'user_id' => Auth::id(),
             'title' => $request->get('title'),

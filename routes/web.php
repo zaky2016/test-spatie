@@ -25,4 +25,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::post('/change' , [App\Http\Controllers\HomeController::class , 'change']);
 
 Route::get('/file_test', [App\Http\Controllers\FileController::class, 'index'])->name('file_test');
+
+
 Route::post('/file/upload', [App\Http\Controllers\FileController::class, 'store'])->name('file.upload');
+Route::post('/file/upload_ajax', [App\Http\Controllers\FileController::class, 'store'])->name('file.upload_ajax');
+
+
+
+
+Route::get('/listfile', [App\Http\Controllers\ListFileController::class, 'index'])->name('listfile');
+
+Route::get('/listfile/{name}', [App\Http\Controllers\ListFileController::class, 'download'])->name('listfile/{path}');
